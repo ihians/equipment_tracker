@@ -1,3 +1,4 @@
+// Feature: Category filter - Muhammad Haroon
 // ── Configuration ─────────────────────────────────────────────────────────────
 // The API URL is read from an environment variable injected at build time,
 // or falls back to localhost for local development.

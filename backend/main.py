@@ -44,7 +44,7 @@ class EquipmentCreate(BaseModel):
     category: str
     serial_number: str
     location: str
-    status: Optional[str] = "Available"
+    status: Optional[str] = "AVAILABLE"
 
 
 class EquipmentUpdate(BaseModel):

@@ -1,6 +1,6 @@
 # Equipment Tracker
 
-A simple equipment inventory management tool built for the Pakistan Air Force IT Branch.
+A simple equipment inventory management tool built for the IT Branch.
 Used as the training application for Docker and Git workshops.
 
 ---

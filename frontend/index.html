@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Equipment Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Header ────────────────────────────────────────────────────────────── -->
+  <header>
+    <div class="header-inner">
+      <div class="header-title">
+        <span class="header-badge">SINES</span>
+        <div>
+          <h1>Equipment Tracker</h1>
+          <p>SINES — IT Branch</p>
+        </div>
+      </div>
+      <div id="summary-bar">
+        <div class="summary-item">
+          <span id="total-count">0</span>
+          <label>Total</label>
+        </div>
+        <div class="summary-item serviceable">
+          <span id="ok-count">0</span>
+          <label>Serviceable</label>
+        </div>
+        <div class="summary-item unserviceable">
+          <span id="bad-count">0</span>
+          <label>Unserviceable</label>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── Add Equipment Form ─────────────────────────────────────────────── -->
+    <section class="card" id="form-section">
+      <h2>Add Equipment</h2>
+      <form id="add-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="name">Equipment Name</label>
+            <input type="text" id="name" placeholder="e.g. Dell Latitude 5540" required />
+          </div>
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" required>
+              <option value="">-- Select --</option>
+              <option>Laptop</option>
+              <option>Desktop</option>
+              <option>Server</option>
+              <option>Networking</option>
+              <option>Printer</option>
+              <option>Radio Equipment</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="serial">Serial Number</label>
+            <input type="text" id="serial" placeholder="e.g. SN-2024-00142" required />
+          </div>
+          <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" id="location" placeholder="e.g. Ops Room, Block C" required />
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Add Equipment</button>
+          <span id="form-message"></span>
+        </div>
+      </form>
+    </section>
+
+    <!-- ── Filter Bar ─────────────────────────────────────────────────────── -->
+    <section id="filter-bar">
+      <input type="text" id="search-input" placeholder="Search by name, serial, or location..." />
+      <select id="filter-status">
+        <option value="">All Statuses</option>
+        <option>Serviceable</option>
+        <option>Unserviceable</option>
+        <option>Under Maintenance</option>
+      </select>
+    </section>
+
+    <!-- ── Equipment Table ────────────────────────────────────────────────── -->
+    <section class="card" id="table-section">
+      <h2>Equipment Inventory</h2>
+      <div id="loading">Loading...</div>
+      <table id="equipment-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Serial No.</th>
+            <th>Location</th>
+            <th>Status</th>
+            <th>Added On</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+      </table>
+      <p id="empty-message" class="empty-msg" style="display:none;">
+        No equipment found. Add some using the form above.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>PAF Equipment Tracker &mdash; IT Branch Internal Tool</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

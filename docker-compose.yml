@@ -1,0 +1,48 @@
+# Docker Compose file — defines and wires together all services
+# Version 3.8 is widely supported and stable
+version: "3.8"
+
+services:
+
+  # ── Backend service (FastAPI) ────────────────────────────────────────────────
+  backend:
+    build:
+      context: ./backend        # Look for Dockerfile inside the backend/ folder
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "8000:8000"             # Map host port 8000 → container port 8000
+    environment:
+      - DATA_FILE=data/equipment.json   # Tell the app where to store data
+    volumes:
+      - equipment-data:/app/data        # Persist JSON data across container restarts
+    networks:
+      - network
+    restart: unless-stopped
+
+  # ── Frontend service (Nginx) ─────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend       # Look for Dockerfile inside the frontend/ folder
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "80:80"                 # Map host port 80 → container port 80
+    depends_on:
+      - backend                 # Start backend first before starting frontend
+    networks:
+      - network
+    restart: unless-stopped
+
+# ── Named volume ─────────────────────────────────────────────────────────────
+# This volume persists the equipment JSON file on the host machine
+# Even if you stop and remove containers, the data survives
+volumes:
+  equipment-data:
+
+# ── Network ───────────────────────────────────────────────────────────────────
+# A private bridge network so containers can talk to each other by name
+# e.g. the frontend can reach the backend at http://backend:8000
+networks:
+  network:
+    driver: bridge

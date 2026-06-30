@@ -44,7 +44,7 @@ class EquipmentCreate(BaseModel):
     category: str
     serial_number: str
     location: str
-    status: Optional[str] = "Serviceable"
+    status: Optional[str] = "In_Service"
 
 
 class EquipmentUpdate(BaseModel):
